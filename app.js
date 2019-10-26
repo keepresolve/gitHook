@@ -66,6 +66,6 @@ const httpsOptions = {
 // the main event
 const wapps = websockify(app, {}, httpsOptions);
 wapps.ws.use(websoket);
-wapps.listen(3000);
+wapps.listen(3006);
 
 module.exports = app

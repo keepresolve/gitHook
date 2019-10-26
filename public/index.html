@@ -12,7 +12,8 @@
     </div>
     <div id="message"></div>
     <script>
-        let ws = new WebSocket("wss://localhost:3000")
+        let hostname=location.hostname
+        let ws = new WebSocket("wss://"+hostname+":3006")
         let state={
             _status:0,
             _ws:ws,
