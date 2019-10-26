@@ -11,6 +11,23 @@ let Api = {
       method: "get",
       params
     });
+  },
+  getImages(params={}){
+    return service({
+        url: "/images/json",
+        method: "get",
+        params
+      });
+  },
+  build(params={}){
+     
+  },
+  delete(params={}){
+    return service({
+        url: "/images/{name}",
+        method: "delete",
+        params
+      });
   }
 };
 
@@ -19,17 +36,30 @@ async function websocket(ctx, next) {
   /* 每打开一个连接就往 上线文数组中 添加一个上下文 */
   ctxs.push(ctx);
   ctx.websocket.on("message", async message => {
-    let docker = await Api.get(getinfo).catch(error => {
+    let info = await Api.getinfo().catch(error => {
       return {
         error
       };
     });
+    let images= await Api.getImages().catch(error => {
+        return {
+          error
+        };
+    });
+    // let deleteResult= await Api.getImages().catch(error => {
+    //     return {
+    //       error
+    //     };
+    // });
     console.log(message);
     for (let i = 0; i < ctxs.length; i++) {
       if (ctx == ctxs[i]) continue;
       ctxs[i].websocket.send(message + "\r\n" + JSON.stringify(ctxs));
       let dockerMessage = {
-        dockerMessag: docker
+        dockerMessag: {
+            info,
+            images
+        }
       };
       ctxs[i].websocket.send(JSON.stringify(dockerMessage));
     }
