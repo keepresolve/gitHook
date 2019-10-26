@@ -25,7 +25,7 @@ let getDockerMessage = async function() {
 };
 router.all("/webhook", async (ctx, next) => {
   let body = ctx.request.body;
-  let ctxs=body.ctxs
+  // let ctxs=body.ctxs
   let repositoryName= body.Payload?body.Payload.repository.name:""
   switch (repositoryName) {
     case "audio":
