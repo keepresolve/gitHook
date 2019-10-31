@@ -32,7 +32,7 @@ router.all("/webhook", async (ctx, next) => {
       
       break;
   }
-  let dockerMessage =   await getDockerMessage();
+  let dockerMessage =  await getDockerMessage();
   for (let i = 0; i < ctxs.length; i++) {
     ctxs[i].websocket.send(JSON.stringify(body));
     ctxs[i].websocket.send(JSON.stringify(dockerMessage));
