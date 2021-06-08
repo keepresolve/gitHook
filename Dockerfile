@@ -11,5 +11,6 @@ RUN npm install --registry=https://registry.npm.taobao.org && mv node_modules ..
 COPY . /app
 EXPOSE 3006
 EXPOSE 6050
+EXPOSE 9229
 CMD ["npm", "start"]
 # CMD ["pm2-docker", "bin/www"]

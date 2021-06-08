@@ -2,8 +2,9 @@ const Sequelize = require('sequelize')
 let path = require('path')
 const sequelize = new Sequelize({
     dialect: 'sqlite',
-    operatorsAliases: false,
-    logging: false, //关闭打印输出
+    // (node:1447) [SEQUELIZE0004] DeprecationWarning: A boolean value was passed to options.operatorsAliases. This is a no-op with v5 and should be removed.
+    // operatorsAliases: false, 
+    logging: true, //关闭打印输出
     // 仅限 SQLite
     storage: path.resolve(__dirname, './dbs/sqlite.db')
 })
